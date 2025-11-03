@@ -10,21 +10,29 @@ Artisan::command('inspire', function () {
 
 
 Schedule::command('news:fetch-news')
-    ->cron('0 */6 * * *')
+    //For rapid implementation
+//    ->cron('0 */6 * * *')
+    ->everyMinute()
     ->withoutOverlapping()
     ->runInBackground();
 
 Schedule::command('news:fetch-guardian')
-    ->cron('10 */6 * * *')
+    //For rapid implementation
+//    ->cron('10 */6 * * *')
+    ->everyMinute()
     ->withoutOverlapping()
     ->runInBackground();
 
 Schedule::command('news:fetch-new-york')
-    ->cron('20 */6 * * *')
+    //For rapid implementation
+//    ->cron('20 */6 * * *')
+    ->everyMinute()
     ->withoutOverlapping()
     ->runInBackground();
 
 Schedule::command('news:fetch-ai')
-    ->cron('30 */6 * * *')
+    //For rapid implementation
+//    ->cron('30 */6 * * *')
+    ->everyMinute()
     ->withoutOverlapping()
     ->runInBackground();

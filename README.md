@@ -1,6 +1,6 @@
 # News Aggregator Backend
 
-This project is a Laravel-based backend application developed by **Mohamad Al Moazen** as part of the **Innoscripta AG Challenge Test**.
+This project is a Laravel-based backend application developed by **Eng. Mohamad Al Moazen** as part of the **Innoscripta AG Challenge Test**.
 
 ## Overview
 
@@ -51,10 +51,19 @@ You can populate the database quickly and directly in two ways:
   ```bash
   php artisan schedule:run
   ```
+  here you can execute each commands by alone and pass the options filters to it like:
+* news:fetch-guardian
+  {--q= : Search keyword}
+  {--from= : Start date (YYYY-MM-DD)}
+  {--to= : End date (YYYY-MM-DD)}
+  {--category= : Category (technology - science - world)}
+  {--author= : Author name (Andrew)}
+
 
 ### 4. Postman Collection
 
 A Postman collection is included within the project files at the root directory:
+
 
 ```
 /news-aggregator-backend.postman_collection.json
@@ -65,11 +74,15 @@ You can import this file into Postman to test all API endpoints easily.
 
 ### 5. Scheduler Commands
 
-The project includes command-line tasks that can be executed through Laravel’s scheduler. These commands are responsible for fetching and updating news from the integrated APIs.
+The project includes command-line tasks that can be executed through Laravel’s scheduler. These commands are responsible for fetching and updating news from the integrated APIs
+and ensure that the data is
+regularly updated from the live data sources.
 
 ## Using Postman for Searching
 
 Within Postman, you can perform **search operations** to query stored news or directly fetch results from the third-party APIs in case no local data is available yet.
+
+* You can search by using the endpoint api, exist in the api.php file and pass the filters to the endpoint (type,q,from,source,to,category,author)
 
 ## Important Notes
 
@@ -81,7 +94,7 @@ Please note that in some cases, certain fields in the returned data might be nul
 
 ## Author
 
-**Mohamad Al Moazen**
+**Eng. Mohamad Al Moazen**
 Project: *Innoscripta AG Challenge Test*
 
 ## License
