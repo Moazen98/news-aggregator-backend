@@ -3,13 +3,13 @@
 
 function checkIsDevMode()
 {
-    return intval(env("DEV_MODE", 1));
+    return intval(env("DEV_MODE", 2));
 }
 
 
 function checkIsDevOrLocalMode()
 {
-    $envValue = env("DEV_MODE", 1);
+    $envValue = env("DEV_MODE", 2);
 
     return ($envValue == 1 || $envValue == 2);
 }
@@ -18,7 +18,7 @@ function checkIsDevOrLocalMode()
 
 function checkIsLocalMode()
 {
-    $envValue = env("DEV_MODE", 1);
+    $envValue = env("DEV_MODE", 2);
 
     return ($envValue == 2);
 }

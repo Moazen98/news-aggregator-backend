@@ -1,59 +1,89 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# News Aggregator Backend
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This project is a Laravel-based backend application developed by **Mohamad Al Moazen** as part of the **Innoscripta AG Challenge Test**.
 
-## About Laravel
+## Overview
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+The application integrates multiple third-party news APIs and aggregates their data into a unified database. You can also use Postman or Laravel Artisan commands to fetch, seed, or schedule news updates.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Available APIs
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+There are **4 API resources** implemented in this project:
 
-## Learning Laravel
+* **News API** (`news_api`)
+* **Guardian API** (`guardian`)
+* **New York Times API** (`new_york`)
+* **News API AI** (`news_api_ai`)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+If a specific API type does not currently have stored news in the database, the application can fetch live data directly from the corresponding third-party API until it is cached locally.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Setup Instructions
 
-## Laravel Sponsors
+### 1. Installation
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+```bash
+composer install
+cp .env.example .env
+php artisan key:generate
+```
 
-### Premium Partners
+After creating the .env file, make sure to copy the necessary API keys and configuration values from .env.example. These settings are listed at the bottom of .env.example and include API credentials and other environment configurations. Default values are provided for convenience, but you can replace them with your own keys if needed.
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### 2. Database Migration
 
-## Contributing
+Run the following command to migrate database tables:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+php artisan migrate
+```
 
-## Code of Conduct
+### 3. Seeding Data
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+You can populate the database quickly and directly in two ways:
 
-## Security Vulnerabilities
+* Using Laravel seeders (it will execute the commands and fetch the data from the third parts):
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+  ```bash
+  php artisan db:seed
+  ```
+* Or by executing the scheduler to run the data fetching commands:
+
+  ```bash
+  php artisan schedule:run
+  ```
+
+### 4. Postman Collection
+
+A Postman collection is included within the project files at the root directory:
+
+```
+/news-aggregator-backend.postman_collection.json
+```
+
+
+You can import this file into Postman to test all API endpoints easily.
+
+### 5. Scheduler Commands
+
+The project includes command-line tasks that can be executed through Laravel’s scheduler. These commands are responsible for fetching and updating news from the integrated APIs.
+
+## Using Postman for Searching
+
+Within Postman, you can perform **search operations** to query stored news or directly fetch results from the third-party APIs in case no local data is available yet.
+
+## Important Notes
+
+Search results depend on the fields used in the search process or on the available command options.
+
+Since the APIs used are free versions, some may not return full datasets, and certain APIs only allow searching within the last month unless upgraded to a paid plan.
+
+Please note that in some cases, certain fields in the returned data might be null due to API limitations or missing information.
+
+## Author
+
+**Mohamad Al Moazen**
+Project: *Innoscripta AG Challenge Test*
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
