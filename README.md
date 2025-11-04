@@ -1,6 +1,6 @@
-# News Aggregator Backend
+# News Aggregator Backend (Very important to read)
 
-This project is a Laravel-based backend application developed by **Eng. Mohamad Al Moazen** as part of the **Innoscripta AG Challenge Test**.
+This project is a **Laravel v12.36.1** based backend application developed by **Eng. Mohamad Al Moazen** as part of the **Innoscripta AG Challenge Test**.
 
 ## Overview
 
@@ -83,6 +83,8 @@ regularly updated from the live data sources.
 Within Postman, you can perform **search operations** to query stored news or directly fetch results from the third-party APIs in case no local data is available yet.
 
 * You can search by using the endpoint api, exist in the api.php file and pass the filters to the endpoint (type,q,from,source,to,category,author)
+* you can for speed access by directly calling from the browser : http://127.0.0.1:8000/api/v1/news/articles?type=guardian
+ , or you can simply use the postman uploaded file
 
 ## Important Notes
 
@@ -91,6 +93,25 @@ Search results depend on the fields used in the search process or on the availab
 Since the APIs used are free versions, some may not return full datasets, and certain APIs only allow searching within the last month unless upgraded to a paid plan.
 
 Please note that in some cases, certain fields in the returned data might be null due to API limitations or missing information.
+
+##  Best practices solutions which were implemented in the code
+
+* SOLID Principles
+* Services Design Pattern
+* Repository Design Pattern
+* Factory Services Design Pattern
+* Singleton Design Pattern
+* Resources & Collections
+* Commands (that can be used by cron jobs)
+* Form Request Validation (with customize error validation response)
+* Scopes
+* Transactions Database
+* Handling Fallback & Exceptions
+* Seeders
+* Api versioning
+* Customize Api Response Functionality
+* Helpers autoload file
+
 
 ## Author
 
